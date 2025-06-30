@@ -221,8 +221,8 @@ export default function LeCentre() {
                     </a>
                   </p>
                   <p>
-                    <a href="mailto:contact@centre-esthetique-belair.fr" className="text-primary hover:underline">
-                      contact@centre-esthetique-belair.fr
+                    <a href="mailto:contact@esthetique-belair.fr" className="text-primary hover:underline">
+                      contact@esthetique-belair.fr
                     </a>
                   </p>
                 </address>

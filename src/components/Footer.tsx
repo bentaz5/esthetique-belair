@@ -29,8 +29,8 @@ const Footer = () => {
                 </a>
               </p>
               <p>
-                <a href="mailto:contact@centre-esthetique-belair.fr" className="hover:text-primary transition-colors">
-                  contact@centre-esthetique-belair.fr
+                <a href="mailto:contact@esthetique-belair.fr" className="hover:text-primary transition-colors">
+                  contact@esthetique-belair.fr
                 </a>
               </p>
             </address>
