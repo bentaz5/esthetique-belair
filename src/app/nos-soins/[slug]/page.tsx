@@ -545,7 +545,7 @@ const soins: Record<string, Soin> = {
   },
   'emslim-neo': {
     id: 'emslim-neo',
-    titre: 'EMSlim NEO avec radiofréquence',
+    titre: 'Radiofréquence EMSlim',
     accroche: 'Tonification musculaire et réduction de la graisse par ondes électromagnétiques',
     imageHero: '/images/soins/radiofrequence-emslim.png',
     introduction: {

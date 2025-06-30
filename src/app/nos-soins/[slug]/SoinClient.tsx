@@ -212,7 +212,7 @@ export default function SoinClient({ soin }: { soin: Soin }) {
                   <span className="font-semibold mb-2">Avant</span>
                   <img
                     src={soin.resultats.avantApres.avant}
-                    alt="Résultat avant traitement"
+                    alt={soin.resultats.avantApres.avant.split('/').pop()}
                     className="rounded-lg shadow-lg object-cover w-full h-auto"
                   />
                 </div>

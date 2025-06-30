@@ -120,9 +120,9 @@ export default function NosSoins() {
           description: 'Solutions high-tech pour des résultats visibles',
           items: [
             {
-              name: 'EMSlim NEO avec radiofréquence',
+              name: 'Radiofréquence EMSlim',
               description: 'Tonification musculaire et réduction de la masse graisseuse',
-              image: '/images/soins/emslim-neo.png',
+              image: '/images/soins/radiofrequence-emslim.png',
               slug: 'emslim-neo'
             },
             {
