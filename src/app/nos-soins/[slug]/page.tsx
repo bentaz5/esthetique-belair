@@ -1065,12 +1065,12 @@ const soins: Record<string, Soin> = {
   }
 };
 
-export const generateStaticParams = () => {
+export async function generateStaticParams() {
   return Object.keys(soins).map(slug => ({ slug }));
 };
 
 // MODIFICATION : Ajout de 'async' et utilisation du type 'Props'
-export default async function SoinDetail({ params }: Props) {
+export default async function SoinDetail({ params }: { params: { slug: string } }) {
   const soin: SoinType = soins[params.slug];
 
   if (!soin) {
