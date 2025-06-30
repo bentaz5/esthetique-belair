@@ -1070,7 +1070,7 @@ export async function generateStaticParams() {
 };
 
 // MODIFICATION : Ajout de 'async' et utilisation du type 'Props'
-export default async function SoinDetail({ params }: { params: { slug: string } }) {
+export default async function SoinDetail({ params }: any) {
   const soin: SoinType = soins[params.slug];
 
   if (!soin) {
