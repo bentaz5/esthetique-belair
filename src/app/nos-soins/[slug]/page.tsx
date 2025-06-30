@@ -5,6 +5,12 @@ import Metadata from '@/components/Metadata';
 import SchemaOrg from '@/components/SchemaOrg';
 import SoinClient, { Soin as SoinType } from './SoinClient';
 
+// AJOUT : Définition du type correct pour les props de la page
+type Props = {
+  params: { slug: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+};
+
 // Types pour les données des soins
 type Soin = {
   id: string;
@@ -1063,12 +1069,16 @@ export const generateStaticParams = () => {
   return Object.keys(soins).map(slug => ({ slug }));
 };
 
-export default function SoinDetail({ params }: { params: { slug: string } }) {
+// MODIFICATION : Ajout de 'async' et utilisation du type 'Props'
+export default async function SoinDetail({ params }: Props) {
   const soin: SoinType = soins[params.slug];
+
   if (!soin) {
     notFound();
   }
+
   const soinUrl = `https://www.esthetique-belair.fr/nos-soins/${soin.id}`;
+
   return (
     <>
       <Metadata
@@ -1077,6 +1087,17 @@ export default function SoinDetail({ params }: { params: { slug: string } }) {
         image={`https://www.esthetique-belair.fr${soin.imageHero}`}
         url={soinUrl}
       />
+      {/* SchemaOrg n'était pas dans votre code, mais si vous l'utilisez, laissez-le */}
+      <SchemaOrg
+    type="MedicalProcedure" // Type de schéma pertinent pour un soin médical
+    name={soin.titre}
+    description={soin.accroche}
+    url={soinUrl}
+    image={`https://www.esthetique-belair.fr${soin.imageHero}`}
+    // --- Props optionnelles mais recommandées que vous pouvez ajouter ---
+    price={soin.tarifs.base}
+    bodyLocation={soin.zonesTraitees}
+/>
       <Navigation />
       <main className="min-h-screen">
         <SoinClient soin={soin} />
@@ -1084,4 +1105,4 @@ export default function SoinDetail({ params }: { params: { slug: string } }) {
       <Footer />
     </>
   );
-} 
+}
