@@ -428,7 +428,7 @@ const soins: Record<string, Soin> = {
     },
     resultats: {
       description: 'Les résultats apparaissent progressivement sur 3 à 6 mois, avec une amélioration continue de la fermeté et de l\'élasticité de la peau.',
-      duree: '12 à 18 mois',
+      duree: '3 séances recommandées espacées de 3 à 4 mois',
       avantApres: {
         avant: '/images/avant-apres/hifu-avant.png',
         apres: '/images/avant-apres/hifu-apres.png'
