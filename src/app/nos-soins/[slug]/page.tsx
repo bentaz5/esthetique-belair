@@ -177,8 +177,8 @@ const soins: Record<string, Soin> = {
       description: 'Les résultats apparaissent progressivement dans les 3 à 7 jours suivant le traitement. L\'effet dure généralement 4 à 6 mois.',
       duree: '4 à 6 mois',
       avantApres: {
-        avant: '/images/avant-apres/botox-avant.png',
-        apres: '/images/avant-apres/botox-apres.png'
+        avant: '/images/avant-apres/botox-front-avant.png',
+        apres: '/images/avant-apres/botox-front-apres.png'
       }
     },
     effetsSecondaires: [
