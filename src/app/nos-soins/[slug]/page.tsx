@@ -1,17 +1,15 @@
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import Metadata from '@/components/Metadata';
 import SchemaOrg from '@/components/SchemaOrg';
-import SoinClient, { Soin as SoinType } from './SoinClient';
+import SoinClient from './SoinClient';
 
-// AJOUT : Définition du type correct pour les props de la page
 type Props = {
   params: { slug: string };
   searchParams?: { [key: string]: string | string[] | undefined };
 };
 
-// Types pour les données des soins
 type Soin = {
   id: string;
   titre: string;
@@ -57,7 +55,6 @@ type Soin = {
   }[];
 };
 
-// Données des soins
 const soins: Record<string, Soin> = {
   'microneedling-radiofrequence': {
     id: 'microneedling',
@@ -144,7 +141,7 @@ const soins: Record<string, Soin> = {
     imageHero: '/images/soins/botox.png',
     introduction: {
       texte: 'Le Botox est un traitement médical esthétique qui utilise la toxine botulique pour réduire temporairement l\'apparition des rides d\'expression.',
-      pourQui: 'Idéal pour les personnes souhaitant atténuer les rides du front, les rides du lion ou les pattes d\'oie.'
+      pourQui: 'Idéal pour les personnes souhaitant atténuer les rides du font, les rides du lion ou les pattes d\'oie.'
     },
     avantages: [
       {
@@ -626,7 +623,7 @@ const soins: Record<string, Soin> = {
     accroche: 'Élimination efficace et durable des poils indésirables grâce à la dernière technologie Laser Diode',
     imageHero: '/images/soins/epilation-laser.jpg',
     introduction: {
-      texte: 'Le Laser Diode représente l\'avancée la plus récente en matière d\'épilation définitive. Cette technologie émet une longueur d\'onde spécifique, absorbée sélectivement par la mélanine des poils, sans endommager les tissus environnants. Le Laser Diode permet une épilation plus efficace, plus confortable et adaptée à tous les types de peau.',
+      texte: 'Le Laser Diode représente l\'avancée la plus récente en matière d\'épilation définitive. Cette technologie émet une longueur d\'onde spécifique, absorbée sélectivement par la mélanine des poils, sans endommager les tissus environnants.',
       pourQui: 'Idéal pour toutes les personnes souhaitant se débarrasser durablement des poils indésirables, quelle que soit la zone du corps ou le phototype de peau.'
     },
     avantages: [
@@ -637,88 +634,29 @@ const soins: Record<string, Soin> = {
           'Traitement rapide des grandes zones',
           'Confort optimal pendant les séances',
           'Efficacité sur tous les phototypes de peau',
-          'Système de refroidissement intégré',
-          'Épiderme protégé pendant le traitement',
-          'Zones traitées douces et lisses'
+          'Système de refroidissement intégré'
         ]
       }
     ],
-    zonesTraitees: [
-      'Visage',
-      'Aisselles',
-      'Bras',
-      'Dos',
-      'Torse',
-      'Jambes',
-      'Maillot'
-    ],
+    zonesTraitees: ['Visage', 'Aisselles', 'Bras', 'Dos', 'Torse', 'Jambes', 'Maillot'],
     deroulement: {
       titre: 'Déroulement de la séance',
-      etapes: [
-        'Consultation préalable et bilan personnalisé',
-        'Préparation de la zone à traiter (rasage si nécessaire)',
-        'Application d\'un gel conducteur',
-        'Traitement par le Laser Diode',
-        'Application d\'un soin apaisant post-traitement',
-        'Conseils d\'entretien entre les séances'
-      ]
+      etapes: ['Consultation', 'Préparation', 'Gel conducteur', 'Laser Diode', 'Soin apaisant']
     },
     resultats: {
-      description: 'Les résultats sont progressifs et s\'améliorent au fil des séances. Une réduction significative de la pilosité est visible dès les 3 premières séances, avec une diminution permanente après un protocole complet.',
-      duree: '6 à 8 séances espacées de 6 à 8 semaines selon la zone traitée'
+      description: 'Les résultats sont progressifs. Réduction significative dès les 3 premières séances.',
+      duree: '6 à 8 séances espacées de 6 à 8 semaines'
     },
-    effetsSecondaires: [
-      'Légère rougeur temporaire',
-      'Sensation de chaleur pendant quelques heures',
-      'Sensibilité possible de la zone traitée'
-    ],
-    contreIndications: [
-      'Bronzage récent ou exposition au soleil',
-      'Certaines maladies dermatologiques',
-      'Prise de médicaments photosensibilisants',
-      'Grossesse et allaitement'
-    ],
+    effetsSecondaires: ['Légère rougeur', 'Chaleur'],
+    contreIndications: ['Bronzage récent', 'Grossesse'],
     tarifs: {
       base: 60,
-      description: `
-| Zone | Prix |
-|---|---|
-| Lèvres | 60€ |
-| Bas du visage | 80€ |
-| Aisselles | 60€ |
-| Maillot simple | 50€ |
-| Maillot échancré | 70€ |
-| Maillot semi intégral | 80€ |
-| Maillot intégral | 90€ |
-| Cuisses | 150€ |
-| Demi jambes | 130€ |
-| Jambes complètes | 180€ |
-| Demi bras | 60€ |
-| Bras entier | 100€ |
-| Petites zones | 60€ |
-\n**Forfaits**\n
-| Forfait | Prix |
-|---|---|
-| Demi jambes + maillot + aisselles | 240€ |
-| Jambes complètes + maillot + aisselles | 300€ |
-`
+      description: 'À partir de 60€ selon la zone (voir grille tarifaire complète sur place).'
     },
     faq: [
       {
-        question: 'Combien de séances sont nécessaires ?',
-        reponse: 'En moyenne, 6 à 8 séances sont recommandées pour des résultats optimaux, espacées de 6 à 8 semaines selon la zone et le type de pilosité.'
-      },
-      {
-        question: 'Est-ce que le traitement est douloureux ?',
-        reponse: 'Le Laser Diode est reconnu pour être l\'un des traitements d\'épilation les plus confortables. La sensation est souvent décrite comme un léger picotement ou un élastique qui claque sur la peau. Le système de refroidissement intégré réduit considérablement l\'inconfort.'
-      },
-      {
-        question: 'Quelle préparation avant une séance ?',
-        reponse: 'Il est recommandé d\'éviter l\'exposition au soleil pendant les 4 semaines précédant la séance, de raser la zone 24h avant (ne pas épiler à la cire), et d\'éviter les produits irritants ou parfumés sur la zone à traiter.'
-      },
-      {
-        question: 'L\'épilation est-elle vraiment définitive ?',
-        reponse: 'Le terme "définitif" signifie une réduction permanente et significative du nombre de poils. Certains facteurs hormonaux peuvent stimuler la repousse de nouveaux poils dans certaines zones, nécessitant parfois une séance d\'entretien annuelle.'
+        question: 'Est-ce douloureux ?',
+        reponse: 'Le système de refroidissement intégré rend la séance très confortable.'
       }
     ]
   },
@@ -728,379 +666,98 @@ const soins: Record<string, Soin> = {
     accroche: 'Traitement ciblé des rougeurs et vaisseaux apparents pour un teint unifié',
     imageHero: '/images/soins/laser-vasculaire.png',
     introduction: {
-      texte: 'Le laser vasculaire est un traitement médical qui cible spécifiquement l\'hémoglobine présente dans les vaisseaux sanguins dilatés ou superficiels. Cette technologie permet de traiter avec précision les rougeurs diffuses, la couperose, les télangiectasies et les varicosités, sans endommager les tissus environnants.',
-      pourQui: 'Idéal pour les personnes présentant des rougeurs diffuses, des vaisseaux apparents sur le visage, de la couperose, ou souhaitant unifier leur teint. Convient à la plupart des phototypes cutanés.'
+      texte: 'Le laser vasculaire cible l\'hémoglobine des vaisseaux dilatés sans abîmer la peau environnante.',
+      pourQui: 'Idéal pour la couperose, les rougeurs ou les varicosités.'
     },
     avantages: [
       {
-        titre: 'Bénéfices principaux',
-        items: [
-          'Réduction significative des rougeurs et vaisseaux apparents',
-          'Traitement précis et ciblé',
-          'Séances rapides et peu inconfortables',
-          'Résultats visibles dès les premières séances',
-          'Amélioration durable du teint',
-          'Récupération rapide',
-          'Technologie non invasive'
-        ]
+        titre: 'Bénéfices',
+        items: ['Réduction des rougeurs', 'Teint unifié', 'Technologie non invasive']
       }
     ],
-    zonesTraitees: [
-      'Visage (joues, nez, ailes du nez)',
-      'Cou',
-      'Décolleté',
-      'Jambes (petites varicosités)'
-    ],
+    zonesTraitees: ['Visage', 'Nez', 'Cou', 'Décolleté', 'Jambes'],
     deroulement: {
-      titre: 'Déroulement de la séance',
-      etapes: [
-        'Consultation préalable et diagnostic précis',
-        'Nettoyage et préparation de la peau',
-        'Protection des yeux par lunettes spécifiques',
-        'Traitement par laser vasculaire',
-        'Application d\'un soin apaisant post-traitement',
-        'Conseils de protection solaire post-traitement'
-      ]
+      titre: 'Séance',
+      etapes: ['Nettoyage', 'Protection oculaire', 'Laser', 'Apaisement']
     },
     resultats: {
-      description: 'Les résultats sont progressifs avec une amélioration visible dès la première séance pour les vaisseaux les plus fins. Les rougeurs diffuses nécessitent généralement plusieurs séances pour un résultat optimal.',
-      duree: '2 à 4 séances espacées de 4 à 6 semaines selon l\'indication',
+      description: 'Amélioration dès la première séance.',
+      duree: '2 à 4 séances espacées de 4 à 6 semaines',
       avantApres: {
         avant: '/images/avant-apres/laser-vasculaire-avant.png',
         apres: '/images/avant-apres/laser-vasculaire-apres.png'
       }
     },
-    effetsSecondaires: [
-      'Rougeur et sensation de chaleur (quelques heures)',
-      'Légère œdème possible',
-      'Micro-croûtes transitoires (sur les vaisseaux traités)',
-      'Sensibilité cutanée temporaire'
-    ],
-    contreIndications: [
-      'Grossesse et allaitement',
-      'Exposition récente au soleil',
-      'Prise de médicaments photosensibilisants',
-      'Antécédents de chéloïdes',
-      'Certaines pathologies cutanées actives'
-    ],
+    effetsSecondaires: ['Rougeur', 'Petit oedème'],
+    contreIndications: ['Soleil', 'Grossesse'],
     tarifs: {
       base: 150,
-      description: 'À partir de 150€ selon la zone et l\'étendue du traitement.'
+      description: 'À partir de 150€ selon l\'étendue.'
     },
     faq: [
       {
-        question: 'Combien de séances sont nécessaires ?',
-        reponse: 'Le nombre de séances varie selon l\'indication : 1 à 2 séances peuvent suffire pour des vaisseaux isolés, tandis que la couperose ou les rougeurs diffuses nécessitent généralement 3 à 4 séances.'
-      },
-      {
-        question: 'Le traitement est-il douloureux ?',
-        reponse: 'La sensation pendant le traitement est souvent décrite comme un léger picotement ou un élastique qui claque sur la peau. Un système de refroidissement intégré et l\'application d\'un gel froid rendent le traitement très tolérable.'
-      },
-      {
-        question: 'Quelles précautions prendre après une séance ?',
-        reponse: 'Il est recommandé d\'éviter l\'exposition au soleil pendant les 2 semaines suivant le traitement, d\'appliquer une protection solaire SPF50, et d\'éviter les activités provoquant une importante dilatation des vaisseaux (sport intense, sauna, hammam) pendant 48h.'
-      },
-      {
-        question: 'Les résultats sont-ils définitifs ?',
-        reponse: 'Les vaisseaux traités disparaissent définitivement, mais de nouveaux vaisseaux peuvent apparaître au fil du temps, notamment en cas de prédisposition génétique à la couperose ou d\'exposition solaire excessive.'
-      }
-    ]
-  },
-  'laser-co2-fractionne': {
-    id: 'laser-co2-fractionne',
-    titre: 'Laser CO2 Fractionné',
-    accroche: 'Resurfaçage cutané avancé pour un rajeunissement visible et durable',
-    imageHero: '/images/soins/laser-co2.jpg',
-    introduction: {
-      texte: 'Le laser CO2 fractionné est une technologie de pointe pour le resurfaçage cutané. Contrairement aux lasers traditionnels, la technologie fractionnée traite uniquement des micro-zones de peau, préservant des zones saines qui accélèrent la cicatrisation. Ce traitement agit en profondeur pour stimuler intensément la production de collagène et renouveler la peau.',
-      pourQui: 'Idéal pour les personnes présentant des rides marquées, cicatrices d\'acné, relâchement cutané, photovieillissement important, ou souhaitant améliorer significativement la qualité globale de leur peau.'
-    },
-    avantages: [
-      {
-        titre: 'Bénéfices principaux',
-        items: [
-          'Réduction significative des rides et ridules',
-          'Atténuation des cicatrices (acné, chirurgicales)',
-          'Amélioration du relâchement cutané',
-          'Réduction des taches pigmentaires profondes',
-          'Affinement des pores dilatés',
-          'Stimulation intense du collagène',
-          'Résultats durables et progressifs'
-        ]
-      }
-    ],
-    zonesTraitees: [
-      'Visage complet',
-      'Contour des yeux',
-      'Tour de la bouche',
-      'Cou',
-      'Décolleté',
-      'Mains'
-    ],
-    deroulement: {
-      titre: 'Déroulement de la séance',
-      etapes: [
-        'Consultation préalable et bilan personnalisé',
-        'Préparation cutanée spécifique pendant 2-4 semaines',
-        'Application de crème anesthésiante (1 heure avant)',
-        'Protection des yeux par lunettes spécifiques',
-        'Traitement par laser CO2 fractionné',
-        'Application de soins apaisants post-laser',
-        'Remise d\'un protocole de soins post-traitement détaillé'
-      ]
-    },
-    resultats: {
-      description: 'Les résultats apparaissent progressivement au cours des 3 à 6 mois suivant le traitement, avec une amélioration continue de la qualité de la peau. La production de collagène se poursuit pendant plusieurs mois après la séance, offrant un rajeunissement cutané visible et durable.',
-      duree: '1 à 3 séances espacées de 2 à 3 mois selon l\'indication',
-      avantApres: {
-        avant: '/images/avant-apres/laser-co2-avant.png',
-        apres: '/images/avant-apres/laser-co2-apres.png'
-      }
-    },
-    effetsSecondaires: [
-      'Rougeur intense (3 à 7 jours)',
-      'Œdème temporaire (2 à 4 jours)',
-      'Desquamation (5 à 7 jours)',
-      'Sensibilité cutanée',
-      'Bronzage paradoxal (rare)'
-    ],
-    contreIndications: [
-      'Grossesse et allaitement',
-      'Exposition solaire récente ou prévue',
-      'Antécédents d\'herpès (nécessite traitement préventif)',
-      'Phototypes très foncés (risque de dépigmentation)',
-      'Maladies auto-immunes actives',
-      'Traitements immunosuppresseurs'
-    ],
-    tarifs: {
-      base: 450,
-      description: 'À partir de 450€ selon la zone traitée et l\'intensité du traitement.'
-    },
-    faq: [
-      {
-        question: 'Quelle est la différence avec les autres types de lasers ?',
-        reponse: 'Le laser CO2 fractionné est considéré comme le gold standard en matière de resurfaçage cutané. Sa technologie fractionnée permet d\'obtenir des résultats comparables aux lasers ablatifs traditionnels, mais avec un temps de récupération réduit et moins d\'effets secondaires.'
-      },
-      {
-        question: 'La séance est-elle douloureuse ?',
-        reponse: 'Une crème anesthésiante est appliquée avant le traitement pour minimiser l\'inconfort. Pendant la séance, la sensation est généralement décrite comme une série de picotements chauds. Le niveau d\'inconfort dépend de la zone traitée et de l\'intensité du traitement.'
-      },
-      {
-        question: 'Combien de temps dure la période de récupération ?',
-        reponse: 'La période de récupération varie selon l\'intensité du traitement : 3 à 7 jours de rougeur, 5 à 7 jours de desquamation. Une éviction sociale de 5 à 7 jours est généralement recommandée. La peau retrouve son aspect normal après 7 à 10 jours, mais continue à s\'améliorer pendant plusieurs mois.'
-      },
-      {
-        question: 'Quelles précautions prendre après le traitement ?',
-        reponse: 'Après le traitement, il est essentiel de : suivre scrupuleusement le protocole de soins remis après la séance, éviter toute exposition solaire pendant au moins 1 mois, appliquer une protection solaire SPF50+ quotidiennement, hydrater intensément la peau, et éviter les produits irritants pendant la phase de récupération.'
-      }
-    ]
-  },
-  'laser-pigmentaire': {
-    id: 'laser-pigmentaire',
-    titre: 'Laser Pigmentaire',
-    accroche: 'Élimination précise des taches et hyperpigmentations pour un teint unifié',
-    imageHero: '/images/soins/laser-pigmentaire.jpg',
-    introduction: {
-      texte: 'Le laser pigmentaire est un traitement médical qui cible spécifiquement la mélanine présente dans les lésions pigmentaires. Cette technologie permet d\'éliminer efficacement les taches brunes, les lentigos solaires, les mélasmas et autres hyperpigmentations, sans affecter les tissus environnants.',
-      pourQui: 'Idéal pour les personnes présentant des taches brunes liées à l\'âge ou au soleil, des lentigos solaires, des taches de rousseur, ou souhaitant uniformiser leur teint. Adapté à la plupart des phototypes cutanés avec des réglages personnalisés.'
-    },
-    avantages: [
-      {
-        titre: 'Bénéfices principaux',
-        items: [
-          'Élimination ciblée des taches pigmentaires',
-          'Uniformisation du teint',
-          'Traitement précis et efficace',
-          'Résultats visibles en peu de séances',
-          'Procédure rapide et peu invasive',
-          'Amélioration de la qualité globale de la peau',
-          'Récupération rapide'
-        ]
-      }
-    ],
-    zonesTraitees: [
-      'Visage',
-      'Cou',
-      'Décolleté',
-      'Mains',
-      'Bras',
-      'Jambes',
-      'Dos'
-    ],
-    deroulement: {
-      titre: 'Déroulement de la séance',
-      etapes: [
-        'Consultation préalable et analyse des lésions pigmentaires',
-        'Nettoyage et préparation de la peau',
-        'Protection des yeux par lunettes spécifiques',
-        'Traitement par laser pigmentaire',
-        'Application d\'un soin apaisant post-traitement',
-        'Conseils de photoprotection et de soins post-traitement'
-      ]
-    },
-    resultats: {
-      description: 'Les résultats sont progressifs avec un assombrissement initial des taches suivi d\'une desquamation naturelle dans les 7 à 10 jours suivant le traitement. L\'amélioration est visible après une seule séance pour les lésions superficielles.',
-      duree: '1 à 3 séances espacées de 4 à 6 semaines selon le type et la profondeur des lésions',
-      avantApres: {
-        avant: '/images/avant-apres/laser-pigmentaire-avant.png',
-        apres: '/images/avant-apres/laser-pigmentaire-apres.png'
-      }
-    },
-    effetsSecondaires: [
-      'Rougeur temporaire (quelques heures)',
-      'Assombrissement des taches traitées (3 à 7 jours)',
-      'Croûtelles (5 à 10 jours)',
-      'Légère œdème possible'
-    ],
-    contreIndications: [
-      'Grossesse et allaitement',
-      'Exposition récente au soleil',
-      'Prise de médicaments photosensibilisants',
-      'Antécédents de chéloïdes',
-      'Certaines pathologies dermatologiques'
-    ],
-    tarifs: {
-      base: 180,
-      description: 'À partir de 180€ selon la zone et l\'étendue du traitement.'
-    },
-    faq: [
-      {
-        question: 'Toutes les taches pigmentaires peuvent-elles être traitées ?',
-        reponse: 'Le laser pigmentaire est particulièrement efficace sur les lentigos solaires, les taches de vieillesse et certaines hyperpigmentations post-inflammatoires. Le mélasma nécessite une approche plus prudente, combinant souvent le laser avec d\'autres traitements. Une consultation préalable est essentielle pour déterminer si vos taches peuvent être traitées efficacement.'
-      },
-      {
-        question: 'Le traitement est-il douloureux ?',
-        reponse: 'La sensation pendant le traitement est souvent décrite comme un léger claquement ou un élastique qui frappe la peau. La douleur est généralement minime et bien tolérée, ne nécessitant pas d\'anesthésie pour la plupart des patients.'
-      },
-      {
-        question: 'Quelles précautions prendre après une séance ?',
-        reponse: 'Il est essentiel d\'éviter l\'exposition au soleil pendant au moins 4 semaines après le traitement, d\'appliquer quotidiennement une protection solaire SPF50+, de ne pas frotter ni gratter les zones traitées, et de suivre le protocole de soins recommandé pour optimiser les résultats et minimiser les risques.'
-      },
-      {
-        question: 'Les résultats sont-ils définitifs ?',
-        reponse: 'Les lésions pigmentaires traitées disparaissent définitivement. Cependant, de nouvelles taches peuvent apparaître au fil du temps, particulièrement en cas d\'exposition solaire non protégée. Une protection solaire rigoureuse est essentielle pour maintenir les résultats à long terme.'
-      }
-    ]
-  },
-  'coussin-pelvien': {
-    id: 'coussin-pelvien',
-    titre: 'Coussin Pelvien EMSLIM RF',
-    accroche: 'Solution innovante et non invasive pour renforcer les muscles du plancher pelvien et réduire l\'incontinence',
-    imageHero: '/images/soins/coussin-pelvien.png',
-    introduction: {
-      texte: 'Le Coussin Pelvien EMSLIM RF est une solution technologique avancée spécialement conçue pour renforcer les muscles du plancher pelvien. Utilisant la combinaison unique d\'ondes électromagnétiques focalisées et de radiofréquence, ce traitement stimule intensément les muscles pelviens, permettant de retrouver tonicité et fonctionnalité sans effort ni inconfort.',
-      pourQui: 'Particulièrement recommandé pour les femmes ayant connu un affaiblissement du plancher pelvien suite à un accouchement, une ménopause, ou simplement avec l\'âge. Idéal pour traiter l\'incontinence urinaire d\'effort, améliorer le confort intime et prévenir les prolapsus.'
-    },
-    avantages: [
-      {
-        titre: 'Bénéfices principaux',
-        items: [
-          'Renforcement significatif des muscles du plancher pelvien',
-          'Réduction notable de l\'incontinence urinaire d\'effort',
-          'Amélioration du confort et de la qualité de vie',
-          'Stimulation équivalente à 20 000 contractions par séance',
-          'Procédure non invasive et totalement indolore',
-          'Aucun temps de récupération nécessaire',
-          'Compatible avec une vie active normale'
-        ]
-      }
-    ],
-    zonesTraitees: [
-      'Muscles du plancher pelvien',
-      'Zone périnéale',
-      'Muscles abdominaux profonds associés'
-    ],
-    deroulement: {
-      titre: 'Déroulement de la séance',
-      etapes: [
-        'Consultation préalable et bilan personnalisé',
-        'Installation confortable en position assise sur le coussin EMSLIM RF',
-        'Séance de 30 minutes de stimulation électromagnétique',
-        'Aucune préparation spécifique requise',
-        'Retour immédiat aux activités quotidiennes'
-      ]
-    },
-    resultats: {
-      description: 'Les résultats se manifestent progressivement, avec une amélioration perceptible de la tonicité du plancher pelvien et une diminution des fuites urinaires dès les premières séances. L\'effet se renforce au fil du protocole complet, avec des bénéfices durables sur le contrôle de la vessie et le confort quotidien.',
-      duree: '6 à 8 séances espacées de 2 à 3 jours, puis séances d\'entretien mensuelles si nécessaire',
-      avantApres: {
-        avant: '/images/avant-apres/coussin-pelvien-avant.png',
-        apres: '/images/avant-apres/coussin-pelvien-apres.png'
-      }
-    },
-    effetsSecondaires: [
-      'Légère sensation de contractions musculaires pendant la séance',
-      'Rare sensibilité temporaire de la zone traitée',
-      'Fatigue musculaire légère (similaire à celle ressentie après un exercice)'
-    ],
-    contreIndications: [
-      'Grossesse en cours',
-      'Port d\'un dispositif électronique implanté (pacemaker)',
-      'Chirurgie récente du plancher pelvien (moins de 6 mois)',
-      'Infections urinaires ou génitales actives',
-      'Certains prolapsus sévères (à évaluer lors de la consultation)'
-    ],
-    tarifs: {
-      base: 180,
-      description: 'À partir de 180€ la séance. Forfaits disponibles pour protocole complet : 6 séances à 950€.'
-    },
-    faq: [
-      {
-        question: 'Comment fonctionne le Coussin Pelvien EMSLIM RF ?',
-        reponse: 'Le Coussin Pelvien EMSLIM RF utilise une technologie combinant l\'entraînement musculaire électromagnétique à haute intensité (HI-EMT) et la radiofréquence (RF). Cette synergie provoque des contractions supramaximales des muscles du plancher pelvien, impossibles à réaliser volontairement. Une séance équivaut à environ 20 000 contractions, ce qui renforce intensément la musculature pelvienne sans effort de votre part.'
-      },
-      {
-        question: 'La séance est-elle douloureuse ou gênante ?',
-        reponse: 'Non, le traitement est totalement indolore. Vous ressentirez simplement des contractions musculaires rythmiques dans la zone pelvienne, comparables à des exercices de Kegel intensifs mais sans effort. La séance se déroule habillée, en position assise confortable, sans aucune intrusion ni gêne.'
-      },
-      {
-        question: 'Combien de séances sont nécessaires pour voir des résultats ?',
-        reponse: 'La plupart des patientes rapportent une amélioration perceptible dès 3-4 séances. Pour des résultats optimaux et durables, un protocole de 6 à 8 séances est généralement recommandé, avec des séances espacées de 2 à 3 jours. Des séances d\'entretien mensuelles peuvent ensuite être proposées selon les besoins individuels.'
-      },
-      {
-        question: 'Ce traitement remplace-t-il les exercices de Kegel traditionnels ?',
-        reponse: 'Le Coussin Pelvien EMSLIM RF complète idéalement les exercices de Kegel traditionnels mais avec une efficacité démultipliée. Il permet d\'atteindre et de stimuler des fibres musculaires profondes difficiles à contracter volontairement. Pour des résultats optimaux, combiner le traitement avec des exercices réguliers est recommandé, surtout en phase d\'entretien.'
+        question: 'Résultats définitifs ?',
+        reponse: 'Les vaisseaux traités disparaissent, mais de nouveaux peuvent apparaître avec le temps.'
       }
     ]
   }
 };
 
-export async function generateStaticParams() {
-  return Object.keys(soins).map(slug => ({ slug }));
-};
+// --- LOGIQUE SEO ET RENDU ---
 
-// MODIFICATION : Ajout de 'async' et utilisation du type 'Props'
-export default async function SoinDetail({ params }: any) {
-  const soin: SoinType = soins[params.slug];
+// --- LOGIQUE SEO ET RENDU (CORRIGÉ POUR NEXT.JS 15) ---
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const resolvedParams = await params; // On attend que les params soient prêts
+  const slug = resolvedParams.slug;
+  const soin = soins[slug];
+  
+  if (!soin) return { title: 'Soin non trouvé' };
+
+  const url = `https://esthetique-belair.fr/soins/${slug}`;
+
+  return {
+    title: `${soin.titre} | Centre Esthétique Bel-Air Paris`,
+    description: soin.accroche,
+    alternates: { canonical: url },
+    openGraph: {
+      title: soin.titre,
+      description: soin.accroche,
+      url: url,
+      siteName: 'Centre Esthétique Bel-Air',
+      locale: 'fr_FR',
+      type: 'article',
+      images: [{ url: soin.imageHero, width: 1200, height: 630, alt: soin.titre }],
+    }
+  };
+}
+
+export default async function SoinPage({ params }: Props) {
+  const resolvedParams = await params; // On attend ici aussi
+  const slug = resolvedParams.slug;
+  const soin = soins[slug];
 
   if (!soin) {
     notFound();
   }
 
-  const soinUrl = `https://www.esthetique-belair.fr/nos-soins/${soin.id}`;
-
   return (
     <>
-      <Metadata
-        title={`${soin.titre} | Traitement médical esthétique`}
+      <SchemaOrg 
+        type="MedicalProcedure"
+        name={soin.titre}
         description={soin.accroche}
-        image={`https://www.esthetique-belair.fr${soin.imageHero}`}
-        url={soinUrl}
+        image={soin.imageHero}
+        price={soin.tarifs.base}
+        priceSpecification={soin.tarifs.description}
+        url={`https://esthetique-belair.fr/soins/${slug}`}
+        bodyLocation={soin.zonesTraitees}
+        procedure={soin.deroulement.etapes}
+        medicalSpecialty="Médecine Esthétique"
       />
-      {/* SchemaOrg n'était pas dans votre code, mais si vous l'utilisez, laissez-le */}
-      <SchemaOrg
-    type="MedicalProcedure" // Type de schéma pertinent pour un soin médical
-    name={soin.titre}
-    description={soin.accroche}
-    url={soinUrl}
-    image={`https://www.esthetique-belair.fr${soin.imageHero}`}
-    // --- Props optionnelles mais recommandées que vous pouvez ajouter ---
-    price={soin.tarifs.base}
-    bodyLocation={soin.zonesTraitees}
-/>
       <Navigation />
-      <main className="min-h-screen">
-        <SoinClient soin={soin} />
+      <main>
+        <SoinClient soin={soin as any} />
       </main>
       <Footer />
     </>
