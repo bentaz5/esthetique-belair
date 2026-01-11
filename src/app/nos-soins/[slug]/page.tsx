@@ -703,13 +703,15 @@ const soins: Record<string, Soin> = {
   }
 };
 
-// 1. On modifie generateMetadata pour Next.js 15
+// --- LOGIQUE SEO ET RENDU (CORRIGÉ POUR NEXT.JS 15) ---
+
+// 1. Génération des métadonnées pour Google
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const resolvedParams = await params; // LIGNE CRUCIALE
+  const resolvedParams = await params; 
   const slug = resolvedParams.slug;
   const soin = soins[slug];
 
-  if (!soin) return { title: 'Soin non trouvé' };
+  if (!soin) return { title: 'Soin non trouvé | Centre Bel-Air' };
 
   const url = `https://esthetique-belair.fr/soins/${slug}`;
 
@@ -729,9 +731,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-// 2. On modifie SoinPage pour Next.js 15 (ajout de async et await)
+// 2. Composant de la page
 export default async function SoinPage({ params }: Props) {
-  const resolvedParams = await params; // LIGNE CRUCIALE
+  const resolvedParams = await params;
   const slug = resolvedParams.slug;
   const soin = soins[slug];
 
