@@ -703,15 +703,12 @@ const soins: Record<string, Soin> = {
   }
 };
 
-// --- LOGIQUE SEO ET RENDU ---
-
-// --- LOGIQUE SEO ET RENDU (CORRIGÉ POUR NEXT.JS 15) ---
-
+// 1. On modifie generateMetadata pour Next.js 15
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const resolvedParams = await params; // On attend que les params soient prêts
+  const resolvedParams = await params; // LIGNE CRUCIALE
   const slug = resolvedParams.slug;
   const soin = soins[slug];
-  
+
   if (!soin) return { title: 'Soin non trouvé' };
 
   const url = `https://esthetique-belair.fr/soins/${slug}`;
@@ -732,8 +729,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+// 2. On modifie SoinPage pour Next.js 15 (ajout de async et await)
 export default async function SoinPage({ params }: Props) {
-  const resolvedParams = await params; // On attend ici aussi
+  const resolvedParams = await params; // LIGNE CRUCIALE
   const slug = resolvedParams.slug;
   const soin = soins[slug];
 
