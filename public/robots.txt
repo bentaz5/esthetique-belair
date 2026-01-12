@@ -1,7 +1,10 @@
 User-agent: *
 Allow: /
-Sitemap: https://www.esthetique-belair.fr/sitemap.xml
 
-# Interdire l'accès aux pages d'administration si elles existent
+# On pointe vers le sitemap correct sans le www
+Sitemap: https://esthetique-belair.fr/sitemap.xml
+
+# Interdire l'accès aux dossiers techniques
 Disallow: /admin/
-Disallow: /wp-admin/ 
+Disallow: /wp-admin/
+Disallow: /_next/
