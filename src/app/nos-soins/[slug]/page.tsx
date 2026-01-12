@@ -515,10 +515,18 @@ const soins: Record<string, Soin> = {
     resultats: {
       description: "Le résultat est visible immédiatement après la séance. L'acide hyaluronique permet de combler, redessiner et hydrater la peau pour un effet naturel et harmonieux.",
       duree: "1 à 2 séances selon l'indication, entretien tous les 9 à 18 mois",
-      avantApres: {
-        avant: '/images/avant-apres/acide-hyaluronique-avant.png',
-        apres: '/images/avant-apres/acide-hyaluronique-apres.png'
-      }
+      galerieAvantApres: [
+        {
+          titre: "Correction des Cernes",
+          avant: "/images/avant-apres/acide-hyaluronique-cernes-avant.png",
+          apres: "/images/avant-apres/acide-hyaluronique-cernes-apres.png"
+        },
+        {
+          titre: "Résultat Classique",
+          avant: "/images/avant-apres/acide-hyaluronique-avant.png",
+          apres: "/images/avant-apres/acide-hyaluronique-apres.png"
+        }
+      ]
     },
     effetsSecondaires: [
       "Rougeur ou gonflement temporaire",
