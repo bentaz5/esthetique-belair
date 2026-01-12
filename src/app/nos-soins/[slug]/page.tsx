@@ -101,7 +101,7 @@ const soins: Record<string, Soin> = {
       description: 'Les résultats sont progressifs et naturels. Une amélioration de la texture et de la fermeté de la peau est visible dès la première séance.',
       duree: '4 à 5 séances espacées de 4 semaines environ',
       avantApres: {
-        avant: '/images/avant-apres/test.png',
+        avant: '/images/avant-apres/microneedling-avant.png',
         apres: '/images/avant-apres/microneedling-apres.png'
       }
     },
