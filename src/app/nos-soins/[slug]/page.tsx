@@ -30,13 +30,11 @@ type Soin = {
     etapes: string[];
   };
   resultats: {
-    description: string;
-    duree: string;
-    avantApres?: {
-      avant: string;
-      apres: string;
-    };
-  };
+  description: string;
+  duree: string;
+  galerieAvantApres?: { titre: string; avant: string; apres: string; }[]; // Pour le Botox (plusieurs)
+  avantApres?: { avant: string; apres: string; }; // Pour les autres soins (un seul)
+};
   effetsSecondaires: string[];
   contreIndications: string[];
   tarifs: {
@@ -175,10 +173,19 @@ const soins: Record<string, Soin> = {
     resultats: {
       description: 'Les résultats apparaissent progressivement dans les 3 à 7 jours suivant le traitement. L\'effet dure généralement 4 à 6 mois.',
       duree: '4 à 6 mois',
-      avantApres: {
-        avant: '/images/avant-apres/botox-front-avant.png',
-        apres: '/images/avant-apres/botox-front-apres.png'
-      }
+      // On utilise maintenant un tableau d'objets pour les photos
+      galerieAvantApres: [
+        {
+          titre: "Front",
+          avant: '/images/avant-apres/botox-front-avant.png',
+          apres: '/images/avant-apres/botox-front-apres.png'
+        },
+        {
+          titre: "Cernes / Regard",
+          avant: '/images/avant-apres/botox-cernes-avant.png',
+          apres: '/images/avant-apres/botox-cernes-apres.png' 
+        }
+      ]
     },
     effetsSecondaires: [
       'Légère rougeur au point d\'injection',

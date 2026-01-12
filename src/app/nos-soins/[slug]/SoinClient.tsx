@@ -201,34 +201,56 @@ export default function SoinClient({ soin }: { soin: Soin }) {
         </div>
       </section>
 
-      {/* Avant/Après Section */}
-      {soin.resultats.avantApres && (
-        <section className="py-16 md:py-24 bg-white">
-          <div className="container-custom px-4 md:px-6">
-            <div className="max-w-3xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-serif text-center mb-12">Avant / Après</h2>
-              <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="flex flex-col items-center">
-                  <span className="font-semibold mb-2">Avant</span>
-                  <img
-                    src={soin.resultats.avantApres.avant}
-                    alt={soin.resultats.avantApres.avant.split('/').pop()}
-                    className="rounded-lg shadow-lg object-cover w-full h-auto"
-                  />
+      {/* Section Avant / Après avec forçage de type pour supprimer l'erreur */}
+{((soin.resultats as any).galerieAvantApres || (soin.resultats as any).avantApres) && (
+  <section className="py-8">
+    <h2 className="text-3xl font-serif text-center mb-10">Avant / Après</h2>
+    <div className="space-y-12">
+      
+      {/* Test de la galerie via 'as any' */}
+      {(soin.resultats as any).galerieAvantApres ? (
+        (soin.resultats as any).galerieAvantApres.map((item: any, index: number) => (
+          <div key={index} className="space-y-4">
+            {item.titre && <h3 className="text-center font-medium text-gray-600 italic">{item.titre}</h3>}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <div className="text-center">
+                <p className="text-sm text-gray-400 uppercase mb-2 font-medium">Avant</p>
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                  <Image src={item.avant} alt="Avant" fill className="object-cover" unoptimized />
                 </div>
-                <div className="flex flex-col items-center">
-                  <span className="font-semibold mb-2">Après</span>
-                  <img
-                    src={soin.resultats.avantApres.apres}
-                    alt="Résultat après traitement"
-                    className="rounded-lg shadow-lg object-cover w-full h-auto"
-                  />
+              </div>
+              <div className="text-center">
+                <p className="text-sm text-gray-400 uppercase mb-2 font-medium">Après</p>
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                  <Image src={item.apres} alt="Après" fill className="object-cover" unoptimized />
                 </div>
               </div>
             </div>
           </div>
-        </section>
+        ))
+      ) : (
+        /* Cas classique (Microneedling etc.) */
+        soin.resultats.avantApres && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="text-center">
+              <p className="text-sm text-gray-400 uppercase mb-2 font-medium">Avant</p>
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                <Image src={soin.resultats.avantApres.avant} alt="Avant" fill className="object-cover" unoptimized />
+              </div>
+            </div>
+            <div className="text-center">
+              <p className="text-sm text-gray-400 uppercase mb-2 font-medium">Après</p>
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                <Image src={soin.resultats.avantApres.apres} alt="Après" fill className="object-cover" unoptimized />
+              </div>
+            </div>
+          </div>
+        )
       )}
+      
+    </div>
+  </section>
+)}
 
       {/* Avantages Section */}
       <section className="py-16 md:py-24 bg-white">
@@ -549,5 +571,7 @@ export default function SoinClient({ soin }: { soin: Soin }) {
       {/* Modal */}
       <RendezVousModal isOpen={showModal} onClose={() => setShowModal(false)} />
     </>
-  );
+  )
+  ;
+  
 } 
