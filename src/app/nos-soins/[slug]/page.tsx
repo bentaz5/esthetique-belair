@@ -102,7 +102,7 @@ const soins: Record<string, Soin> = {
       duree: '4 à 5 séances espacées de 4 semaines environ',
       avantApres: {
         avant: '/images/avant-apres/microneedling-avant.png',
-        apres: '/images/avant-apres/microneedling-apres.png'
+        apres: '/images/avant-apres/test.png'
       }
     },
     effetsSecondaires: [
