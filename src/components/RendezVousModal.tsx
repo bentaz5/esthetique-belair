@@ -50,12 +50,9 @@ const RendezVousModal = ({ isOpen, onClose }: RendezVousModalProps) => {
               href="https://www.doctolib.fr/centre-laser-et-esthetique/paris/centre-esthetique-bel-air-paris"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center space-x-2 mt-3 bg-[#107ACA] text-white rounded-lg px-6 py-3 hover:bg-[#0b5fa0] transition-colors"
+              className="flex items-center justify-center mt-3 bg-white border-2 border-[#0596DE] rounded-lg px-6 py-3 hover:bg-[#f0f9ff] transition-colors"
             >
-              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M10.46 3.01h3.08v17.98h-3.08zM17.54 7.39a3.07 3.07 0 1 0 0 6.15 3.07 3.07 0 0 0 0-6.15zM6.46 10.46a3.07 3.07 0 1 0 0 6.15 3.07 3.07 0 0 0 0-6.15z" />
-              </svg>
-              <span>Doctolib</span>
+              <img src="/images/doctolib-logo.svg" alt="Doctolib" className="h-8" />
             </a>
           </motion.div>
         </motion.div>
