@@ -730,18 +730,44 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const url = `https://esthetique-belair.fr/nos-soins/${slug}`;
 
+  const seoTitles: Record<string, string> = {
+    'microneedling-radiofrequence': 'Microneedling Radiofréquence Paris Nation | Centre Bel-Air',
+    'botox': 'Botox Paris 12 Nation | Injections par Dermatologue',
+    'botox-hyperhidrose': 'Botox Hyperhidrose Paris 12 | Transpiration excessive',
+    'peelings': 'Peelings Médicaux Paris Nation | Centre Bel-Air 75012',
+    'hifu': 'HIFU Ultrasons Paris Nation | Raffermissement Visage',
+    'acide-hyaluronique': 'Acide Hyaluronique Paris 12 Nation | Injections',
+    'emslim-neo': 'EMSlim Radiofréquence Paris 12 | Remodelage Corporel',
+    'epilation-laser': 'Épilation Laser Diode Paris Nation | Centre Bel-Air',
+    'laser-vasculaire': 'Laser Vasculaire Paris 12 | Couperose & Rougeurs',
+    'coussin-pelvien': 'Coussin Pelvien Paris 12 Nation | Centre Bel-Air',
+  };
+
+  const seoDescriptions: Record<string, string> = {
+    'microneedling-radiofrequence': 'Microneedling avec radiofréquence à Paris Nation (75012). Stimulation du collagène, raffermissement et éclat du teint. Dermatologue qualifié au Centre Esthétique Bel-Air.',
+    'botox': 'Injections de Botox à Paris 12 Nation par dermatologue. Traitement des rides du front, pattes d\'oie et rides du lion. Résultats naturels au Centre Esthétique Bel-Air.',
+    'botox-hyperhidrose': 'Traitement de la transpiration excessive par Botox à Paris 12 Nation. Hyperhidrose des aisselles, mains et pieds. Dermatologue au Centre Esthétique Bel-Air.',
+    'peelings': 'Peelings médicaux à Paris Nation (75012) : glycolique, TCA, dépigmentant. Renouvellement cutané par dermatologue au Centre Esthétique Bel-Air.',
+    'hifu': 'HIFU ultrasons focalisés à Paris Nation (75012). Raffermissement du visage et du corps sans chirurgie. Dermatologue au Centre Esthétique Bel-Air.',
+    'acide-hyaluronique': 'Injections d\'acide hyaluronique à Paris 12 Nation. Comblement des rides, restauration des volumes par dermatologue au Centre Esthétique Bel-Air.',
+    'emslim-neo': 'EMSlim NEO à Paris 12 Nation : tonification musculaire et réduction de graisse par ondes électromagnétiques. Centre Esthétique Bel-Air.',
+    'epilation-laser': 'Épilation définitive au laser diode à Paris Nation (75012). Toutes zones, tous phototypes. Dermatologue au Centre Esthétique Bel-Air.',
+    'laser-vasculaire': 'Laser vasculaire à Paris 12 Nation pour couperose, rougeurs et varicosités. Traitement par dermatologue au Centre Esthétique Bel-Air.',
+    'coussin-pelvien': 'Renforcement du plancher pelvien à Paris 12 Nation. Traitement non invasif au Centre Esthétique Bel-Air.',
+  };
+
   return {
-    title: `${soin.titre} | Centre Esthétique Bel-Air Paris`,
-    description: soin.accroche,
+    title: seoTitles[slug] || `${soin.titre} | Centre Esthétique Bel-Air Paris Nation`,
+    description: seoDescriptions[slug] || soin.accroche,
     alternates: { canonical: url },
     openGraph: {
-      title: soin.titre,
-      description: soin.accroche,
+      title: seoTitles[slug] || soin.titre,
+      description: seoDescriptions[slug] || soin.accroche,
       url: url,
       siteName: 'Centre Esthétique Bel-Air',
       locale: 'fr_FR',
       type: 'article',
-      images: [{ url: soin.imageHero, width: 1200, height: 630, alt: soin.titre }],
+      images: [{ url: soin.imageHero, width: 1200, height: 630, alt: `${soin.titre} au Centre Esthétique Bel-Air Paris Nation` }],
     }
   };
 }
@@ -759,10 +785,10 @@ export default async function SoinPage({ params, searchParams }: Props) {
 
   return (
     <>
-      <SchemaOrg 
+      <SchemaOrg
         type="MedicalProcedure"
-        name={soin.titre}
-        description={soin.accroche}
+        name={`${soin.titre} à Paris Nation`}
+        description={`${soin.accroche}. Réalisé par dermatologue au Centre Esthétique Bel-Air, Paris 12.`}
         image={soin.imageHero}
         price={soin.tarifs.base}
         priceSpecification={soin.tarifs.description}
@@ -770,6 +796,7 @@ export default async function SoinPage({ params, searchParams }: Props) {
         bodyLocation={soin.zonesTraitees}
         procedure={soin.deroulement.etapes}
         medicalSpecialty="Médecine Esthétique"
+        faq={soin.faq}
       />
       <Navigation />
       <main>

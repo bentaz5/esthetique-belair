@@ -59,24 +59,13 @@ export default function SoinClient({ soin }: { soin: Soin }) {
 
   return (
     <>
-      <SchemaOrg
-        type="MedicalProcedure"
-        name={soin.titre}
-        description={soin.accroche}
-        image={`https://www.esthetique-belair.fr${soin.imageHero}`}
-        price={soin.tarifs.base}
-        priceSpecification={soin.tarifs.description}
-        treatmentIndication={soin.introduction.pourQui}
-        bodyLocation={soin.zonesTraitees}
-        procedure={soin.deroulement.etapes}
-        url={`https://www.esthetique-belair.fr/nos-soins/${soin.id}`}
-      />
+      {/* SchemaOrg est désormais injecté dans page.tsx (server component) pour éviter les doublons */}
       {/* Hero Section */}
       <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center" aria-label="En-tête">
         <div className="absolute inset-0 z-0">
           <Image
             src={soin.imageHero}
-            alt={`Illustration du soin ${soin.titre}`}
+            alt={`${soin.titre} - Soin de médecine esthétique à Paris Nation, Centre Bel-Air`}
             fill
             className="object-cover object-center brightness-75"
             priority
@@ -91,7 +80,7 @@ export default function SoinClient({ soin }: { soin: Soin }) {
             transition={{ duration: 0.8 }}
             className="text-4xl md:text-6xl font-serif mb-6"
           >
-            {soin.titre}
+            {soin.titre} <span className="block text-2xl md:text-3xl mt-2 font-light">à Paris Nation</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -116,7 +105,10 @@ export default function SoinClient({ soin }: { soin: Soin }) {
               className="prose prose-lg mx-auto"
             >
               <p className="text-neutral-600 mb-6">{soin.introduction.texte}</p>
-              <p className="text-neutral-600">{soin.introduction.pourQui}</p>
+              <p className="text-neutral-600 mb-6">{soin.introduction.pourQui}</p>
+              <p className="text-neutral-500 text-sm italic">
+                Ce soin est réalisé par un dermatologue qualifié au Centre Esthétique Bel-Air, 22 avenue du Bel Air, Paris 12<sup>e</sup> (quartier Nation).
+              </p>
             </motion.div>
           </div>
         </div>
@@ -216,13 +208,13 @@ export default function SoinClient({ soin }: { soin: Soin }) {
               <div className="text-center">
                 <p className="text-sm text-gray-400 uppercase mb-2 font-medium">Avant</p>
                 <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                  <Image src={item.avant} alt="Avant" fill className="object-cover" unoptimized />
+                  <Image src={item.avant} alt={`Avant traitement ${soin.titre} ${item.titre || ''} Paris Nation`} fill className="object-cover" unoptimized />
                 </div>
               </div>
               <div className="text-center">
                 <p className="text-sm text-gray-400 uppercase mb-2 font-medium">Après</p>
                 <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                  <Image src={item.apres} alt="Après" fill className="object-cover" unoptimized />
+                  <Image src={item.apres} alt={`Après traitement ${soin.titre} ${item.titre || ''} Paris Nation`} fill className="object-cover" unoptimized />
                 </div>
               </div>
             </div>
@@ -235,13 +227,13 @@ export default function SoinClient({ soin }: { soin: Soin }) {
             <div className="text-center">
               <p className="text-sm text-gray-400 uppercase mb-2 font-medium">Avant</p>
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                <Image src={soin.resultats.avantApres.avant} alt="Avant" fill className="object-cover" unoptimized />
+                <Image src={soin.resultats.avantApres.avant} alt={`Avant traitement ${soin.titre} Paris Nation`} fill className="object-cover" unoptimized />
               </div>
             </div>
             <div className="text-center">
               <p className="text-sm text-gray-400 uppercase mb-2 font-medium">Après</p>
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                <Image src={soin.resultats.avantApres.apres} alt="Après" fill className="object-cover" unoptimized />
+                <Image src={soin.resultats.avantApres.apres} alt={`Résultat ${soin.titre} Paris Nation Centre Bel-Air`} fill className="object-cover" unoptimized />
               </div>
             </div>
           </div>
@@ -548,6 +540,37 @@ export default function SoinClient({ soin }: { soin: Soin }) {
         </div>
       </section>
 
+      {/* Maillage interne — Soins complémentaires */}
+      <section className="py-16 md:py-24">
+        <div className="container-custom px-4 md:px-6">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-serif text-center mb-8">Soins complémentaires</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {[
+                { slug: 'botox', titre: 'Botox' },
+                { slug: 'acide-hyaluronique', titre: 'Acide Hyaluronique' },
+                { slug: 'microneedling-radiofrequence', titre: 'Microneedling' },
+                { slug: 'hifu', titre: 'HIFU' },
+                { slug: 'peelings', titre: 'Peelings Médicaux' },
+                { slug: 'epilation-laser', titre: 'Épilation Laser' },
+              ]
+                .filter(s => s.slug !== soin.id)
+                .slice(0, 3)
+                .map(s => (
+                  <Link
+                    key={s.slug}
+                    href={`/nos-soins/${s.slug}`}
+                    className="block bg-neutral-50 rounded-lg p-4 text-center hover:bg-primary/5 transition-colors border border-neutral-200"
+                  >
+                    <span className="text-primary font-medium">{s.titre}</span>
+                    <span className="block text-sm text-neutral-500 mt-1">Paris Nation</span>
+                  </Link>
+                ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-16 bg-neutral-50">
         <div className="container-custom px-4 md:px-6">
@@ -557,13 +580,18 @@ export default function SoinClient({ soin }: { soin: Soin }) {
               Prenez rendez-vous dès maintenant pour une consultation personnalisée
             </p>
             <button
-              onClick={e => { console.log('click bouton soin', e.target); e.preventDefault(); e.stopPropagation(); setShowModal(true); }}
+              onClick={e => { e.preventDefault(); e.stopPropagation(); setShowModal(true); }}
               className="btn-primary text-base md:text-lg inline-flex items-center space-x-2 group relative overflow-hidden"
             >
               <CalendarDaysIcon className="h-5 w-5 md:h-6 md:w-6" />
               <span>Prendre rendez-vous</span>
               <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-black/20 to-white/20 transition-all duration-500 ease-out group-hover:w-full" />
             </button>
+            <div className="mt-6">
+              <Link href="/" className="text-primary hover:underline text-sm">
+                ← Retour à l&apos;accueil du Centre Esthétique Bel-Air Paris
+              </Link>
+            </div>
           </div>
         </div>
       </section>
