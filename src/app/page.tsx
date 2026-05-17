@@ -420,10 +420,10 @@ export default function Home() {
       <section className="py-16 px-4 md:px-8 bg-neutral-50">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-serif text-center mb-12 text-neutral-900 transition-opacity duration-700 opacity-100">Nos Soins</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Microneedling */}
             <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-transparent hover:border-primary/40">
-              <Link href="/nos-soins/microneedling" className="block h-full">
+              <Link href="/nos-soins/microneedling-radiofrequence" className="block h-full">
                 <div className="relative h-64">
                   <Image
                     src="/images/soins/microneedling.png"
@@ -496,6 +496,86 @@ export default function Home() {
                   <div className="absolute bottom-0 left-0 w-full p-6 z-10">
                     <h3 className="text-2xl font-serif text-white mb-2">HIFU</h3>
                     <p className="text-white/80 mb-4 text-sm">Raffermissement profond sans chirurgie, technologie de pointe non-invasive.</p>
+                    <span className="inline-block text-primary bg-white/80 rounded-full px-4 py-1 text-sm font-medium shadow hover:bg-white transition">Découvrir</span>
+                  </div>
+                </div>
+              </Link>
+            </div>
+            {/* Acide Hyaluronique */}
+            <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-transparent hover:border-primary/40">
+              <Link href="/nos-soins/acide-hyaluronique" className="block h-full">
+                <div className="relative h-64">
+                  <Image
+                    src="/images/soins/acide-hyaluronique.png"
+                    alt="Acide hyaluronique Paris Nation"
+                    fill
+                    className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                    quality={100}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/10 opacity-80 group-hover:opacity-90 transition-opacity duration-700" />
+                  <div className="absolute bottom-0 left-0 w-full p-6 z-10">
+                    <h3 className="text-2xl font-serif text-white mb-2">Acide Hyaluronique</h3>
+                    <p className="text-white/80 mb-4 text-sm">Comblement des rides, restauration des volumes et hydratation profonde.</p>
+                    <span className="inline-block text-primary bg-white/80 rounded-full px-4 py-1 text-sm font-medium shadow hover:bg-white transition">Découvrir</span>
+                  </div>
+                </div>
+              </Link>
+            </div>
+            {/* EMSlim */}
+            <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-transparent hover:border-primary/40">
+              <Link href="/nos-soins/emslim-neo" className="block h-full">
+                <div className="relative h-64">
+                  <Image
+                    src="/images/soins/radiofrequence-emslim.png"
+                    alt="EMSlim radiofréquence Paris Nation"
+                    fill
+                    className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                    quality={100}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/10 opacity-80 group-hover:opacity-90 transition-opacity duration-700" />
+                  <div className="absolute bottom-0 left-0 w-full p-6 z-10">
+                    <h3 className="text-2xl font-serif text-white mb-2">EMSlim Radiofréquence</h3>
+                    <p className="text-white/80 mb-4 text-sm">Tonification musculaire et réduction de graisse par ondes électromagnétiques.</p>
+                    <span className="inline-block text-primary bg-white/80 rounded-full px-4 py-1 text-sm font-medium shadow hover:bg-white transition">Découvrir</span>
+                  </div>
+                </div>
+              </Link>
+            </div>
+            {/* Épilation Laser */}
+            <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-transparent hover:border-primary/40">
+              <Link href="/nos-soins/epilation-laser" className="block h-full">
+                <div className="relative h-64">
+                  <Image
+                    src="/images/soins/epilation-laser.jpg"
+                    alt="Épilation laser Paris Nation"
+                    fill
+                    className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                    quality={100}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/10 opacity-80 group-hover:opacity-90 transition-opacity duration-700" />
+                  <div className="absolute bottom-0 left-0 w-full p-6 z-10">
+                    <h3 className="text-2xl font-serif text-white mb-2">Épilation Laser</h3>
+                    <p className="text-white/80 mb-4 text-sm">Épilation définitive au laser diode, toutes zones et tous phototypes.</p>
+                    <span className="inline-block text-primary bg-white/80 rounded-full px-4 py-1 text-sm font-medium shadow hover:bg-white transition">Découvrir</span>
+                  </div>
+                </div>
+              </Link>
+            </div>
+            {/* Laser Vasculaire */}
+            <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-transparent hover:border-primary/40">
+              <Link href="/nos-soins/laser-vasculaire" className="block h-full">
+                <div className="relative h-64">
+                  <Image
+                    src="/images/soins/laser-vasculaire.png"
+                    alt="Laser vasculaire Paris Nation"
+                    fill
+                    className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                    quality={100}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/10 opacity-80 group-hover:opacity-90 transition-opacity duration-700" />
+                  <div className="absolute bottom-0 left-0 w-full p-6 z-10">
+                    <h3 className="text-2xl font-serif text-white mb-2">Laser Vasculaire</h3>
+                    <p className="text-white/80 mb-4 text-sm">Traitement des rougeurs, couperose et vaisseaux apparents.</p>
                     <span className="inline-block text-primary bg-white/80 rounded-full px-4 py-1 text-sm font-medium shadow hover:bg-white transition">Découvrir</span>
                   </div>
                 </div>

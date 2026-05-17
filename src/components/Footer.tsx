@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <footer className="bg-neutral-900 text-white">
       <div className="container-custom py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Logo and Contact Info */}
           <div>
             <Link href="/" className="block mb-6">
@@ -58,6 +58,58 @@ const Footer = () => {
               <li>
                 <Link href="/tarifs" className="hover:text-primary transition-colors">
                   Tarifs
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Nos Soins */}
+          <div>
+            <h3 className="text-xl font-serif mb-4">Nos Prestations</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/nos-soins/hifu" className="text-neutral-400 hover:text-primary transition-colors">
+                  HIFU Ultrasons
+                </Link>
+              </li>
+              <li>
+                <Link href="/nos-soins/botox" className="text-neutral-400 hover:text-primary transition-colors">
+                  Botox
+                </Link>
+              </li>
+              <li>
+                <Link href="/nos-soins/acide-hyaluronique" className="text-neutral-400 hover:text-primary transition-colors">
+                  Acide Hyaluronique
+                </Link>
+              </li>
+              <li>
+                <Link href="/nos-soins/peelings" className="text-neutral-400 hover:text-primary transition-colors">
+                  Peelings Médicaux
+                </Link>
+              </li>
+              <li>
+                <Link href="/nos-soins/microneedling-radiofrequence" className="text-neutral-400 hover:text-primary transition-colors">
+                  Microneedling
+                </Link>
+              </li>
+              <li>
+                <Link href="/nos-soins/emslim-neo" className="text-neutral-400 hover:text-primary transition-colors">
+                  EMSlim Radiofréquence
+                </Link>
+              </li>
+              <li>
+                <Link href="/nos-soins/epilation-laser" className="text-neutral-400 hover:text-primary transition-colors">
+                  Épilation Laser
+                </Link>
+              </li>
+              <li>
+                <Link href="/nos-soins/laser-vasculaire" className="text-neutral-400 hover:text-primary transition-colors">
+                  Laser Vasculaire
+                </Link>
+              </li>
+              <li>
+                <Link href="/nos-soins/botox-hyperhidrose" className="text-neutral-400 hover:text-primary transition-colors">
+                  Botox Hyperhidrose
                 </Link>
               </li>
             </ul>
