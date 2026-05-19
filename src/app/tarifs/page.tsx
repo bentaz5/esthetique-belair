@@ -29,7 +29,7 @@ const tarifs = [
     { soin: 'Zone du corps (ex: bras, ventre, intérieur des cuisses)', prix: 'à partir de 960€', details: '' },
   ]},
   { group: 'EMSlim NEO', items: [
-    { soin: 'EMSlim NEO', prix: '170€ / séance (30 min)', details: '' },
+    { soin: 'EMSlim NEO', prix: '130€ / séance (30 min)', details: '' },
   ]},
   { group: 'Coussin pelvien EMSLIM RF', items: [
     { soin: 'Coussin pelvien EMSLIM RF', prix: '180€ / séance', details: '' },

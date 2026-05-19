@@ -616,8 +616,8 @@ const soins: Record<string, Soin> = {
       "Chirurgie récente sur la zone à traiter"
     ],
     tarifs: {
-      base: 170,
-      description: "170€ la séance de 30 minutes. Forfaits disponibles pour protocole complet."
+      base: 130,
+      description: "130€ la séance de 30 minutes. Forfaits disponibles pour protocole complet."
     },
     faq: [
       {
