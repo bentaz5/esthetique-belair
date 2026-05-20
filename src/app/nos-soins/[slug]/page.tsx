@@ -453,8 +453,8 @@ const soins: Record<string, Soin> = {
       'Peau très sensible'
     ],
     tarifs: {
-      base: 480,
-      description: 'Ovale du visage : 480€ ; Visage complet : 1080€ ; Cou : 480€ ; Pourtour de la bouche : 360€ ; Paupières et poches malaires : 360€ ; Visage complet + cou : 1320€ ; Zone du corps (ex: bras, ventre, intérieur des cuisses) : à partir de 960€'
+      base: 720,
+      description: 'Ovale du visage : 720€ TTC ; Visage complet : 1080€ TTC ; Cou : 480€ TTC ; Pourtour de la bouche : 360€ TTC ; Paupières et poches malaires : 360€ TTC ; Visage complet + cou : 1320€ TTC ; Zone du corps (ex: bras, ventre, intérieur des cuisses) : à partir de 960€ TTC'
     },
     faq: [
       {
@@ -617,7 +617,7 @@ const soins: Record<string, Soin> = {
     ],
     tarifs: {
       base: 130,
-      description: "130€ la séance de 30 minutes. Forfaits disponibles pour protocole complet."
+      description: "130€ TTC la séance de 30 minutes. Forfaits disponibles pour protocole complet."
     },
     faq: [
       {
@@ -668,7 +668,7 @@ const soins: Record<string, Soin> = {
     contreIndications: ['Bronzage récent', 'Grossesse'],
     tarifs: {
       base: 60,
-      description: 'À partir de 60€ selon la zone (voir grille tarifaire complète sur place).'
+      description: 'À partir de 60€ TTC selon la zone (voir grille tarifaire complète sur place).'
     },
     faq: [
       {
@@ -709,7 +709,7 @@ const soins: Record<string, Soin> = {
     contreIndications: ['Soleil', 'Grossesse'],
     tarifs: {
       base: 150,
-      description: 'À partir de 150€ selon l\'étendue.'
+      description: 'À partir de 150€ TTC selon l\'étendue.'
     },
     faq: [
       {

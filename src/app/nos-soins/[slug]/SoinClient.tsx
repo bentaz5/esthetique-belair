@@ -500,7 +500,7 @@ export default function SoinClient({ soin }: { soin: Soin }) {
                 </div>
               ) : (
                 <div className="bg-primary/5 rounded-lg p-8">
-                  <p className="text-3xl font-medium text-primary mb-4">{soin.tarifs.base}€</p>
+                  <p className="text-3xl font-medium text-primary mb-4">{soin.tarifs.base}€ <span className="text-lg font-normal text-neutral-500">TTC</span></p>
                   <p className="text-neutral-600">{soin.tarifs.description}</p>
                 </div>
               )}
