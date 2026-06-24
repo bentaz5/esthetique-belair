@@ -271,7 +271,7 @@ const soins: Record<string, Soin> = {
       'Infections cutanées actives'
     ],
     tarifs: {
-      base: 400,
+      base: 480,
       description: 'Tarif par zone (aisselles, mains ou pieds)'
     },
     faq: [

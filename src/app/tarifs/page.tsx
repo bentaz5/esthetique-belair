@@ -17,7 +17,7 @@ const tarifs = [
   ]},
   { group: 'Botox', items: [
     { soin: 'Botox', prix: '360€ TTC', details: 'Haut du visage' },
-    { soin: 'Botox hyperhidrose', prix: '400€ TTC / zone', details: 'Aisselles, mains ou pieds' },
+    { soin: 'Botox hyperhidrose', prix: '480€ TTC / zone', details: 'Aisselles, mains ou pieds' },
   ]},
   { group: 'HIFU (Ultrasons Focalisés)', items: [
     { soin: 'Ovale du visage', prix: '720€ TTC', details: '' },
